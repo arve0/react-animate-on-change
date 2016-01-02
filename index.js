@@ -7,7 +7,7 @@ import React, { Component } from 'react'
  * `animationClassName` when animation is done (event `animationend` is
  * triggered).
  *
- * @prop {string} className - Base class name.
+ * @prop {string} baseClassName - Base class name.
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
@@ -37,7 +37,7 @@ class AnimateOnChange extends Component {
   }
 
   render() {
-    let className = this.props.className
+    let className = this.props.baseClassName
 
     if (this.props.animate && !this.state.clearAnimationClass) {
       className += ` ${this.props.animationClassName}`
