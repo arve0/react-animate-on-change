@@ -39,6 +39,8 @@ The example above will (roughly) render to:
 </span>
 ```
 
+Also, [see the example folder](example).
+
 ## Props
 `baseClassName {string}` : Base class name that be added to the component.
 
