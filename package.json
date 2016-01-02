@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel index.js -d dist",
-    "preversion": "npm run build && git add dist && git commit --amend --no-edit",
+    "postversion": "npm run build && git add dist && git commit --amend --no-edit",
     "postpublish": "git push && git push --tags",
     "start": "echo TODO"
   },
