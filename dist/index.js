@@ -24,7 +24,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * `animationClassName` when animation is done (event `animationend` is
  * triggered).
  *
- * @prop {string} className - Base class name.
+ * @prop {string} baseClassName - Base class name.
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
@@ -67,7 +67,7 @@ var AnimateOnChange = (function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var className = this.props.className;
+      var className = this.props.baseClassName;
 
       if (this.props.animate && !this.state.clearAnimationClass) {
         className += ' ' + this.props.animationClassName;
