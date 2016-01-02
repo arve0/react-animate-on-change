@@ -14,14 +14,13 @@ npm install react-animate-on-change react
 const AnimateOnChage = require('animate-on-change')
 
 // functional component
-const Score = (props) => {
+const Score = (props) =>
   <AnimateOnChange
     baseClassName="Score"
     animationClassName="Score--bounce"
     animate={props.diff != 0}>
       Score: {props.score}
   </AnimateOnChange>
-}
 ```
 
 The example above will (roughly) render to:
