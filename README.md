@@ -2,7 +2,7 @@
 
 [![](https://saucelabs.com/browser-matrix/arve0.svg)](https://saucelabs.com/u/arve0)
 
-Animate your react components on state changes, in contrast to [entering/leaving entries in arrays](https://facebook.github.io/react/docs/animation.html).
+Animate your react components on props or state changes, in contrast to [entries added/removed from arrays](https://facebook.github.io/react/docs/animation.html).
 
 <img src="demo.gif" width="300">
 
