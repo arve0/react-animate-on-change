@@ -50,8 +50,9 @@ Also, [see the example folder](example).
 
 ## Develop
 ```sh
-npm run start
+npm start
 ```
+Add test in [test.js](test.js) and hack away.
 
 ## Known issues
 If the event `animationend` does not trigger, `animationClassName` will not be removed. This is the case in browsers without support for CSS animations, or if the CSS (either `baseClassName` or `animationClassName`) does not declare an animation.
