@@ -38,27 +38,41 @@ var AnimateOnChange = (function (_Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AnimateOnChange).call(this, props));
 
     _this.state = { animating: false, clearAnimationClass: false };
+    _this.animationStart = _this.animationStart.bind(_this);
+    _this.animationEnd = _this.animationEnd.bind(_this);
     return _this;
   }
 
   _createClass(AnimateOnChange, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this2 = this;
-
-      this.refs.root.addEventListener('animationstart', function () {
-        _this2.setState({ animating: true, clearAnimationClass: false });
-      });
-      this.refs.root.addEventListener('animationend', function () {
-        // send separate, animation state change will not render
-        _this2.setState({ clearAnimationClass: true }); // renders
-        _this2.setState({ animating: false, clearAnimationClass: false });
-      });
+      var elm = this.refs.root;
+      elm.addEventListener('animationstart', this.animationStart);
+      elm.addEventListener('animationend', this.animationEnd);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      var elm = this.refs.root;
+      elm.removeEventListener('animationstart', this.animationStart);
+      elm.removeEventListener('animationend', this.animationEnd);
+    }
+  }, {
+    key: 'animationStart',
+    value: function animationStart() {
+      this.setState({ animating: true, clearAnimationClass: false });
+    }
+  }, {
+    key: 'animationEnd',
+    value: function animationEnd() {
+      // send separate, animation state change will not render
+      this.setState({ clearAnimationClass: true }); // renders
+      this.setState({ animating: false, clearAnimationClass: false });
     }
   }, {
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps, nextState) {
-      if (this.state.animating != nextState.animating) {
+      if (this.state.animating !== nextState.animating) {
         // do not render on animation change
         return false;
       }
@@ -83,5 +97,12 @@ var AnimateOnChange = (function (_Component) {
 
   return AnimateOnChange;
 })(_react.Component);
+
+AnimateOnChange.propTypes = {
+  children: _react2.default.PropTypes.element.isRequired,
+  animate: _react2.default.PropTypes.bool.isRequired,
+  baseClassName: _react2.default.PropTypes.string.isRequired,
+  animationClassName: _react2.default.PropTypes.string.isRequired
+};
 
 exports.default = AnimateOnChange;
