@@ -62,7 +62,7 @@ class AnimateOnChange extends Component {
 }
 
 AnimateOnChange.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: React.PropTypes.any.isRequired,
   animate: React.PropTypes.bool.isRequired,
   baseClassName: React.PropTypes.string.isRequired,
   animationClassName: React.PropTypes.string.isRequired
