@@ -38,6 +38,7 @@
     "karma": "^0.13.16",
     "karma-browserify": "^4.4.2",
     "karma-chrome-launcher": "^0.2.2",
+    "karma-ie-launcher": "^0.2.0",
     "karma-jasmine": "^0.3.6",
     "karma-sauce-launcher": "^0.3.0",
     "react": "^0.14.5",
