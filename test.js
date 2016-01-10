@@ -5,7 +5,7 @@ import { render } from 'react-dom'
 import AnimateOnChange from './index.js'
 
 const ANIMATION_TIME = 100
-const ANIMATION_SETTLE = 100
+const ANIMATION_SETTLE = 500
 
 let style = document.createElement('style')
 style.innerHTML = `
