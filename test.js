@@ -5,7 +5,7 @@ import { render } from 'react-dom'
 import AnimateOnChange from './index.js'
 
 const ANIMATION_TIME = 100
-const ANIMATION_SETTLE = 1000
+const ANIMATION_SETTLE = 100
 
 let style = document.createElement('style')
 style.innerHTML = `
@@ -17,6 +17,8 @@ style.innerHTML = `
   width: 100px;
 }
 .fade {
+  -webkit-animation-name: fade-in;
+  -webkit-animation-duration: ${ANIMATION_TIME}ms;
   animation-name: fade-in;
   animation-duration: ${ANIMATION_TIME}ms;
 }
