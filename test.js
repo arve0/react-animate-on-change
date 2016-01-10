@@ -4,78 +4,98 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import AnimateOnChange from './index.js'
 
+const ANIMATION_TIME = 200
+const ANIMATION_SETTLE = 100
+let style = document.createElement('style')
+style.innerHTML = `
+.base {
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+  padding: 5px;
+  width: 100px;
+}
+.fade {
+  animation-name: fade-in;
+  animation-duration: ${ANIMATION_TIME}ms;
+}
+@keyframes fade-in {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+`
+document.head.appendChild(style)
+
+const Animated = ({children}) => {
+  children = children || 'text'
+  return <AnimateOnChange
+    baseClassName='base'
+    animationClassName='fade'
+    animate={true}>
+      {children}
+  </AnimateOnChange>
+}
+
 class PushNewProps extends Component {
   constructor (props) {
     super(props)
     this.state = {}
     this.state.text = 'content'
+  }
+  componentDidMount () {
     setTimeout(function () {
       this.setState({text: 'new content'})
-    }.bind(this), 200)
+    }.bind(this), ANIMATION_TIME + 2 * ANIMATION_SETTLE)
   }
   render () {
-    return <AnimateOnChange
-      baseClassName='base'
-      animationClassName='animated'
-      animate={true}>
-        {this.state.text}
-      </AnimateOnChange>
+    return <Animated>{this.state.text}</Animated>
   }
 }
 
 describe('react-animate-on-change', function () {
-  let root, children
+  let root
   beforeEach(function () {
-    document.head.innerHTML = `<style>
-    .animated {
-      animation: animation-keyframes 100ms;
+    if (root) {
+      document.body.removeChild(root)
     }
-    @keyframes animation-keyframes {
-      from: {opacity: 1}
-      to: {opacity: 0.01}
-    }
-    </style>`
-    document.body.innerHTML = '<div id="root"></div>'
-    root = document.getElementById('root')
-    children = () => <div>content</div>
-    render(<AnimateOnChange
-      baseClassName='base'
-      animationClassName='animated'
-      animate={true}>
-        {children}
-      </AnimateOnChange>, root)
+    root = document.createElement('div')
+    root.id = 'root'
+    document.body.appendChild(root)
   })
 
   it('renders to dom', function () {
+    render(<Animated />, root)
     let elms = document.getElementsByClassName('base')
     expect(elms.length).toBe(1)
   })
 
   it('animation class name is added on enter', function () {
-    let base = document.getElementsByClassName('base')[0]
-    let animated = document.getElementsByClassName('animated')[0]
-    expect(base).toEqual(animated)
+    render(<Animated />, root)
+    let animated = document.getElementsByClassName('fade')
+    expect(animated.length).toBe(1)
   })
 
   it('removes animation class', function (done) {
+    render(<Animated />, root)
     setTimeout(function () {
-      let animated = document.getElementsByClassName('animated')
+      let animated = document.getElementsByClassName('fade')
       expect(animated.length).toBe(0)
       done()
-    }, 4000)
+    }, ANIMATION_TIME + ANIMATION_SETTLE)
   })
 
   it('adds animation class on props change', function (done) {
     render(<PushNewProps />, root)
+    let animated
     setTimeout(function () {
-      let animated = document.getElementsByClassName('animated')
+      animated = document.getElementsByClassName('fade')
       expect(animated.length).toBe(0)
 
       setTimeout(function () {
-        let animated = document.getElementsByClassName('animated')
+        animated = document.getElementsByClassName('fade')
         expect(animated.length).toBe(1)
         done()
-      }, 100)
-    }, 150)
-  })
+      }, 1.5 * ANIMATION_SETTLE)
+    }, ANIMATION_TIME + ANIMATION_SETTLE)
+  }, ANIMATION_TIME * 3)
 })
