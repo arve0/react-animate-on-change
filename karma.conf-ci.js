@@ -19,11 +19,6 @@ module.exports = function (config) {
       browserName: 'internet explorer',
       platform: 'Windows 8'
     },
-    ie9: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      platform: 'Windows 7'
-    },
     firefox: {
       base: 'SauceLabs',
       browserName: 'firefox',
@@ -45,6 +40,22 @@ module.exports = function (config) {
       platform: 'OS X 10.10',
       version: '9.2',
       deviceName: 'iPhone 6 Plus'
+    },
+    android5: {
+      base: 'sauceLabs',
+      browserName: 'android',
+      platform: 'linux',
+      version: '5.1',
+      deviceName: 'Android Emulator',
+      deviceType: 'tablet'
+    },
+    android4: {
+      base: 'sauceLabs',
+      browserName: 'android',
+      platform: 'linux',
+      version: '4.0',
+      deviceName: 'Android Emulator',
+      deviceType: 'phone'
     }
   }
   config.set({
