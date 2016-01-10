@@ -62,7 +62,7 @@ describe('react-animate-on-change', function () {
       let animated = document.getElementsByClassName('animated')
       expect(animated.length).toBe(0)
       done()
-    }, 150)
+    }, 4000)
   })
 
   it('adds animation class on props change', function (done) {
