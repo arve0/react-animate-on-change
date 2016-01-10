@@ -99,7 +99,7 @@ var AnimateOnChange = (function (_Component) {
 })(_react.Component);
 
 AnimateOnChange.propTypes = {
-  children: _react2.default.PropTypes.element.isRequired,
+  children: _react2.default.PropTypes.any.isRequired,
   animate: _react2.default.PropTypes.bool.isRequired,
   baseClassName: _react2.default.PropTypes.string.isRequired,
   animationClassName: _react2.default.PropTypes.string.isRequired
