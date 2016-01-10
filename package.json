@@ -8,7 +8,8 @@
     "example": "webpack --config example/webpack.config.js",
     "postversion": "npm run build && git add dist && git commit --amend --no-edit",
     "postpublish": "git push && git push --tags",
-    "start": "karma start"
+    "start": "karma start",
+    "test": "karma start karma.conf-ci.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "karma-browserify": "^4.4.2",
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.6",
+    "karma-sauce-launcher": "^0.3.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "react-redux": "^4.0.6",
