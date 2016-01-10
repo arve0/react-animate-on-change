@@ -4,8 +4,9 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import AnimateOnChange from './index.js'
 
-const ANIMATION_TIME = 200
+const ANIMATION_TIME = 100
 const ANIMATION_SETTLE = 100
+
 let style = document.createElement('style')
 style.innerHTML = `
 .base {
@@ -22,8 +23,7 @@ style.innerHTML = `
 @keyframes fade-in {
   from {opacity: 1;}
   to {opacity: 0;}
-}
-`
+}`
 document.head.appendChild(style)
 
 const Animated = ({children}) => {
@@ -36,16 +36,13 @@ const Animated = ({children}) => {
   </AnimateOnChange>
 }
 
+let pushThis
 class PushNewProps extends Component {
   constructor (props) {
     super(props)
     this.state = {}
     this.state.text = 'content'
-  }
-  componentDidMount () {
-    setTimeout(function () {
-      this.setState({text: 'new content'})
-    }.bind(this), ANIMATION_TIME + 2 * ANIMATION_SETTLE)
+    pushThis = this
   }
   render () {
     return <Animated>{this.state.text}</Animated>
@@ -91,11 +88,12 @@ describe('react-animate-on-change', function () {
       animated = document.getElementsByClassName('fade')
       expect(animated.length).toBe(0)
 
+      pushThis.setState({text: 'updated text'})
       setTimeout(function () {
         animated = document.getElementsByClassName('fade')
         expect(animated.length).toBe(1)
         done()
-      }, 1.5 * ANIMATION_SETTLE)
+      }, 0.5 * ANIMATION_TIME)
     }, ANIMATION_TIME + ANIMATION_SETTLE)
-  }, ANIMATION_TIME * 3)
+  })
 })
