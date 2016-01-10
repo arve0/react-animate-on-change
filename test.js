@@ -11,7 +11,7 @@ class PushNewProps extends Component {
     this.state.text = 'content'
     setTimeout(function () {
       this.setState({text: 'new content'})
-    }.bind(this), 60)
+    }.bind(this), 200)
   }
   render () {
     return <AnimateOnChange
@@ -28,7 +28,7 @@ describe('react-animate-on-change', function () {
   beforeEach(function () {
     document.head.innerHTML = `<style>
     .animated {
-      animation: animation-keyframes 20ms;
+      animation: animation-keyframes 100ms;
     }
     @keyframes animation-keyframes {
       from: {opacity: 1}
@@ -62,7 +62,7 @@ describe('react-animate-on-change', function () {
       let animated = document.getElementsByClassName('animated')
       expect(animated.length).toBe(0)
       done()
-    }, 40)
+    }, 150)
   })
 
   it('adds animation class on props change', function (done) {
@@ -75,7 +75,7 @@ describe('react-animate-on-change', function () {
         let animated = document.getElementsByClassName('animated')
         expect(animated.length).toBe(1)
         done()
-      }, 20)
-    }, 40)
+      }, 100)
+    }, 150)
   })
 })
