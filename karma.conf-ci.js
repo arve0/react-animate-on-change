@@ -42,7 +42,7 @@ module.exports = function (config) {
       deviceName: 'iPhone 6 Plus'
     },
     android5: {
-      base: 'sauceLabs',
+      base: 'SauceLabs',
       browserName: 'android',
       platform: 'linux',
       version: '5.1',
@@ -50,7 +50,7 @@ module.exports = function (config) {
       deviceType: 'tablet'
     },
     android4: {
-      base: 'sauceLabs',
+      base: 'SauceLabs',
       browserName: 'android',
       platform: 'linux',
       version: '4.0',
