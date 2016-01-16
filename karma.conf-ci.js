@@ -40,6 +40,22 @@ module.exports = function (config) {
       platform: 'OS X 10.10',
       version: '9.2',
       deviceName: 'iPhone 6 Plus'
+    },
+    android5: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      platform: 'linux',
+      version: '5.1',
+      deviceName: 'Android Emulator',
+      deviceType: 'tablet'
+    },
+    android4: {
+      base: 'SauceLabs',
+      browserName: 'android',
+      platform: 'linux',
+      version: '4.0',
+      deviceName: 'Android Emulator',
+      deviceType: 'phone'
     }
   }
   config.set({
