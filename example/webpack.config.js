@@ -1,5 +1,4 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
 
 module.exports = {
   context: path.resolve(__dirname),
@@ -8,7 +7,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [{
@@ -18,9 +17,9 @@ module.exports = {
       query: {
         presets: ['react', 'es2015']
       }
-    },{
+    }, {
       test: /\.css$/,
       loader: 'style!css'
     }]
   }
-};
+}
