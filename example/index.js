@@ -30,11 +30,11 @@ setInterval(() => {
 window.store = store
 
 const AppComponent = ({diff, score}) =>
-  <div className="App">
+  <div className='App'>
     <AnimateOnChange
-      baseClassName="Score"
-      animationClassName="Score--bounce"
-      animate={diff != 0}>
+      baseClassName='Score'
+      animationClassName='Score--bounce'
+      animate={diff !== 0}>
         Score: {score}
     </AnimateOnChange>
   </div>
