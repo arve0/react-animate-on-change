@@ -18,6 +18,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var events = {
+  start: ['animationstart', 'webkitAnimationStart', 'mozAnimationStart', 'oanimationstart', 'MSAnimationStart'],
+  end: ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'oanimationend', 'MSAnimationEnd'],
+  startRemoved: [],
+  endRemoved: []
+};
+
 /**
  * # AnimateOnChange component.
  * Adds `animationClassName` when `animate` is true, then removes
@@ -47,24 +54,58 @@ var AnimateOnChange = (function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var elm = this.refs.root;
-      elm.addEventListener('animationstart', this.animationStart);
-      elm.addEventListener('animationend', this.animationEnd);
+      this.addEventListener('start', elm, this.animationStart);
+      this.addEventListener('end', elm, this.animationEnd);
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       var elm = this.refs.root;
-      elm.removeEventListener('animationstart', this.animationStart);
-      elm.removeEventListener('animationend', this.animationEnd);
+      this.removeEventListeners('start', elm, this.animationStart);
+      this.removeEventListeners('end', elm, this.animationEnd);
+    }
+  }, {
+    key: 'addEventListener',
+    value: function addEventListener(type, elm, eventHandler) {
+      // until an event has been triggered bind them all
+      events[type].map(function (event) {
+        // console.log(`adding ${event}`)
+        elm.addEventListener(event, eventHandler);
+      });
+    }
+  }, {
+    key: 'removeEventListeners',
+    value: function removeEventListeners(type, elm, eventHandler) {
+      events[type].map(function (event) {
+        // console.log(`removing ${event}`)
+        elm.removeEventListener(event, eventHandler);
+      });
+    }
+  }, {
+    key: 'updateEvents',
+    value: function updateEvents(type, newEvent) {
+      // console.log(`updating ${type} event to ${newEvent}`)
+      events[type + 'Removed'] = events[type].filter(function (e) {
+        return e !== newEvent;
+      });
+      events[type] = [newEvent];
     }
   }, {
     key: 'animationStart',
-    value: function animationStart() {
+    value: function animationStart(e) {
+      if (events['start'].length > 1) {
+        this.updateEvents('start', e.type);
+        this.removeEventListeners('startRemoved', this.refs.root, this.animationStart);
+      }
       this.setState({ animating: true, clearAnimationClass: false });
     }
   }, {
     key: 'animationEnd',
-    value: function animationEnd() {
+    value: function animationEnd(e) {
+      if (events['end'].length > 1) {
+        this.updateEvents('end', e.type);
+        this.removeEventListeners('endRemoved', this.refs.root, this.animationStart);
+      }
       // send separate, animation state change will not render
       this.setState({ clearAnimationClass: true }); // renders
       this.setState({ animating: false, clearAnimationClass: false });
