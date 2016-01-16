@@ -57,5 +57,5 @@ npm start
 Add tests in [test.js](test.js) and hack away.
 
 ## Known issues
-- Android tests on saucelabs fails, but animations component work when testing them manually. If you have any experience with testing android browsers on saucelabs, please let me know.
+- Android tests on saucelabs fails, but animation components work when testing them manually. If you have any experience with testing android browsers on saucelabs, please let me know.
 - The browser must support CSS3 animations, doh.
