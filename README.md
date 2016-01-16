@@ -57,4 +57,5 @@ npm start
 Add tests in [test.js](test.js) and hack away.
 
 ## Known issues
-If the event `animationend` does not trigger, `animationClassName` will not be removed. This is the case in browsers without support for CSS animations, or if the CSS (either `baseClassName` or `animationClassName`) does not declare an animation.
+- Android tests on saucelabs fails, but animations component work when testing them manually. If you have any experience with testing android browsers on saucelabs, please let me know.
+- The browser must support CSS3 animations, doh.
