@@ -83,7 +83,9 @@ module.exports = function (config) {
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
     sauceLabs: {
-      testName: 'react-animate-on-change'
+      testName: 'react-animate-on-change',
+      startConnect: false,  // started via travis.yml
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER      
     },
     customLaunchers: customLaunchers,
     browsers: Object.keys(customLaunchers),
