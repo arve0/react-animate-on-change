@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -36,13 +36,13 @@ var events = {
  * @prop {bool} animate - Wheter to animate component.
  */
 
-var AnimateOnChange = (function (_Component) {
+var AnimateOnChange = function (_Component) {
   _inherits(AnimateOnChange, _Component);
 
   function AnimateOnChange(props) {
     _classCallCheck(this, AnimateOnChange);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AnimateOnChange).call(this, props));
+    var _this = _possibleConstructorReturn(this, (AnimateOnChange.__proto__ || Object.getPrototypeOf(AnimateOnChange)).call(this, props));
 
     _this.state = { animating: false, clearAnimationClass: false };
     _this.animationStart = _this.animationStart.bind(_this);
@@ -137,7 +137,7 @@ var AnimateOnChange = (function (_Component) {
   }]);
 
   return AnimateOnChange;
-})(_react.Component);
+}(_react.Component);
 
 AnimateOnChange.propTypes = {
   children: _react2.default.PropTypes.any.isRequired,
