@@ -40,6 +40,15 @@ module.exports = function (config) {
       platform: 'OS X 10.10',
       version: '9.2',
       deviceName: 'iPhone 6 Plus'
+    },
+    android7: {
+      base: 'SauceLabs',
+      appiumVersion: "1.6.4",
+      platformVersion: '7.1',
+      platformName: 'Android',
+      browserName: 'Chrome',
+      deviceName: 'Android GoogleAPI Emulator',
+      deviceOrientation: 'portrait'
     }
   }
   config.set({
