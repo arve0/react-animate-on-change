@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 const events = {
   start: ['animationstart', 'webkitAnimationStart', 'mozAnimationStart', 'oanimationstart', 'MSAnimationStart'],
@@ -98,10 +99,10 @@ class AnimateOnChange extends Component {
 }
 
 AnimateOnChange.propTypes = {
-  children: React.PropTypes.any.isRequired,
-  animate: React.PropTypes.bool.isRequired,
-  baseClassName: React.PropTypes.string.isRequired,
-  animationClassName: React.PropTypes.string.isRequired
+  children: PropTypes.any.isRequired,
+  animate: PropTypes.bool.isRequired,
+  baseClassName: PropTypes.string.isRequired,
+  animationClassName: PropTypes.string.isRequired
 }
 
 export default AnimateOnChange
