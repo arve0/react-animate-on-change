@@ -40,20 +40,23 @@
     "css-loader": "^0.23.1",
     "ecstatic": "^1.4.0",
     "jasmine-core": "^2.4.1",
-    "karma": "^0.13.16",
-    "karma-browserify": "^4.4.2",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-ie-launcher": "^0.2.0",
-    "karma-jasmine": "^0.3.6",
-    "karma-sauce-launcher": "^0.3.0",
+    "karma": "^1.7.0",
+    "karma-browserify": "^5.1.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-sauce-launcher": "^1.1.0",
+    "prop-types": "^15.5.10",
     "react": "^0.14.5 || ^15.0.0",
     "react-dom": "^0.14.5 || ^15.0.0",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",
     "style-loader": "^0.13.0",
+    "watchify": "^3.9.0",
     "webpack": "^1.12.11"
   },
   "peerDependencies": {
-    "react": "^0.14.5 || ^15.0.0"
+    "react": "^0.14.5 || ^15.0.0",
+    "prop-types": "^15.5.10"
   }
 }

@@ -41,21 +41,14 @@ module.exports = function (config) {
       version: '9.2',
       deviceName: 'iPhone 6 Plus'
     },
-    android5: {
+    android7: {
       base: 'SauceLabs',
-      browserName: 'android',
-      platform: 'linux',
-      version: '5.1',
-      deviceName: 'Android Emulator',
-      deviceType: 'tablet'
-    },
-    android4: {
-      base: 'SauceLabs',
-      browserName: 'android',
-      platform: 'linux',
-      version: '4.0',
-      deviceName: 'Android Emulator',
-      deviceType: 'phone'
+      appiumVersion: "1.6.4",
+      platformVersion: '7.1',
+      platformName: 'Android',
+      browserName: 'Chrome',
+      deviceName: 'Android GoogleAPI Emulator',
+      deviceOrientation: 'portrait'
     }
   }
   config.set({
@@ -85,7 +78,7 @@ module.exports = function (config) {
     sauceLabs: {
       testName: 'react-animate-on-change',
       startConnect: false,  // started via travis.yml
-      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER      
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
     },
     customLaunchers: customLaunchers,
     browsers: Object.keys(customLaunchers),
