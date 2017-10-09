@@ -1,5 +1,9 @@
 /* eslint-env jasmine */
 
+global.requestAnimationFrame = function(callback) {
+  setTimeout(callback, 0);
+};
+
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import AnimateOnChange from './index.js'
