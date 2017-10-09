@@ -1,5 +1,15 @@
 /* eslint-env jasmine */
 
+if (typeof global.requestAnimationFrame !== 'function') {
+  // polyfill requestAnimationFrame
+  global.requestAnimationFrame = function (callback) {
+    setTimeout(callback, 0);
+  };
+}
+
+import 'core-js/es6/map';
+import 'core-js/es6/set';
+
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import AnimateOnChange from './index.js'

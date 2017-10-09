@@ -37,6 +37,7 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "concurrently": "^1.0.0",
+    "core-js": "^2.5.1",
     "css-loader": "^0.23.1",
     "ecstatic": "^1.4.0",
     "jasmine-core": "^2.4.1",
@@ -47,8 +48,8 @@
     "karma-jasmine": "^1.1.0",
     "karma-sauce-launcher": "^1.1.0",
     "prop-types": "^15.5.10",
-    "react": "^0.14.5 || ^15.0.0",
-    "react-dom": "^0.14.5 || ^15.0.0",
+    "react": "^0.14.5 || ^15.0.0 || ^16.0.0",
+    "react-dom": "^0.14.5 || ^15.0.0 || ^16.0.0",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",
     "style-loader": "^0.13.0",
@@ -56,7 +57,7 @@
     "webpack": "^1.12.11"
   },
   "peerDependencies": {
-    "react": "^0.14.5 || ^15.0.0",
+    "react": "^0.14.5 || ^15.0.0 || ^16.0.0",
     "prop-types": "^15.5.10"
   }
 }
