@@ -1,8 +1,11 @@
 /* eslint-env jasmine */
 
-global.requestAnimationFrame = function(callback) {
-  setTimeout(callback, 0);
-};
+if (typeof global.requestAnimationFrame !== 'function') {
+  // polyfill requestAnimationFrame
+  global.requestAnimationFrame = function (callback) {
+    setTimeout(callback, 0);
+  };
+}
 
 import 'core-js/es6/map';
 import 'core-js/es6/set';
