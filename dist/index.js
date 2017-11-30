@@ -27,19 +27,18 @@ var events = {
   end: ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'oanimationend', 'MSAnimationEnd'],
   startRemoved: [],
   endRemoved: []
+
+  /**
+   * # AnimateOnChange component.
+   * Adds `animationClassName` when `animate` is true, then removes
+   * `animationClassName` when animation is done (event `animationend` is
+   * triggered).
+   *
+   * @prop {string} baseClassName - Base class name.
+   * @prop {string} animationClassName - Class added when `animate == true`.
+   * @prop {bool} animate - Wheter to animate component.
+   */
 };
-
-/**
- * # AnimateOnChange component.
- * Adds `animationClassName` when `animate` is true, then removes
- * `animationClassName` when animation is done (event `animationend` is
- * triggered).
- *
- * @prop {string} baseClassName - Base class name.
- * @prop {string} animationClassName - Class added when `animate == true`.
- * @prop {bool} animate - Wheter to animate component.
- */
-
 var AnimateOnChange = function (_Component) {
   _inherits(AnimateOnChange, _Component);
 
@@ -113,6 +112,8 @@ var AnimateOnChange = function (_Component) {
       // send separate, animation state change will not render
       this.setState({ clearAnimationClass: true }); // renders
       this.setState({ animating: false, clearAnimationClass: false });
+
+      if (this.props.onAnimationComplete) this.props.onAnimationComplete();
     }
   }, {
     key: 'shouldComponentUpdate',
@@ -147,7 +148,8 @@ AnimateOnChange.propTypes = {
   children: _propTypes2.default.any.isRequired,
   animate: _propTypes2.default.bool.isRequired,
   baseClassName: _propTypes2.default.string.isRequired,
-  animationClassName: _propTypes2.default.string.isRequired
+  animationClassName: _propTypes2.default.string.isRequired,
+  onAnimationComplete: _propTypes2.default.func
 };
 
 exports.default = AnimateOnChange;
