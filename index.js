@@ -75,6 +75,8 @@ class AnimateOnChange extends Component {
     // send separate, animation state change will not render
     this.setState({ clearAnimationClass: true })  // renders
     this.setState({ animating: false, clearAnimationClass: false })
+    
+    if (this.props.onAnimationComplete) this.props.onAnimationComplete()
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -102,7 +104,8 @@ AnimateOnChange.propTypes = {
   children: PropTypes.any.isRequired,
   animate: PropTypes.bool.isRequired,
   baseClassName: PropTypes.string.isRequired,
-  animationClassName: PropTypes.string.isRequired
+  animationClassName: PropTypes.string.isRequired,
+  onAnimationComplete: PropTypes.func
 }
 
 export default AnimateOnChange
