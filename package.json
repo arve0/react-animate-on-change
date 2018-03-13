@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Animate your components on state change",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "babel index.js -d dist",
     "example": "concurrent \"ecstatic ./example\" \"npm run ewebpack\"",
