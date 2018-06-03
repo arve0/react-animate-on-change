@@ -16,6 +16,7 @@ const events = {
  *
  * @prop {string} baseClassName - Base class name.
  * @prop {string} animationClassName - Class added when `animate == true`.
+ * @prop {string} customTag - HTML tag of the component.
  * @prop {bool} animate - Wheter to animate component.
  */
 class AnimateOnChange extends Component {
@@ -92,9 +93,11 @@ class AnimateOnChange extends Component {
       className += ` ${this.props.animationClassName}`
     }
 
-    return <span ref='root' className={className}>
+    const Tag = this.props.customTag || 'span';
+
+    return <Tag ref='root' className={className}>
       {this.props.children}
-    </span>
+    </Tag>
   }
 }
 
@@ -102,7 +105,8 @@ AnimateOnChange.propTypes = {
   children: PropTypes.any.isRequired,
   animate: PropTypes.bool.isRequired,
   baseClassName: PropTypes.string.isRequired,
-  animationClassName: PropTypes.string.isRequired
+  animationClassName: PropTypes.string.isRequired,
+  customTag: PropTypes.string
 }
 
 export default AnimateOnChange

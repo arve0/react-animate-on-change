@@ -48,6 +48,8 @@ Also, [see the example folder](example).
 
 `animationClassName {string}` : Animation class name. Added when `animate == true`. Removed when the event [`animationend`](http://www.w3.org/TR/css3-animations/#animationend) is triggered.
 
+`customTag {string}` : HTML tag of the component.
+
 `animate {bool}` : Whether component should animate.
 
 ## Develop
