@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, Store, AnyAction } from 'redux'
+import { createStore, Store } from 'redux'
 import { connect, Provider } from 'react-redux'
 import AnimateOnChange from '../index.js'
 
