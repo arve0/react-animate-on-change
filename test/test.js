@@ -1,7 +1,11 @@
 const { start, shutdown } = require('./server')
 const { launch } = require('puppeteer')
 
-launch().then(async (browser) => {
+const options = process.env.TRAVIS
+    ? { args: ['--no-sandbox'] }
+    : {}
+
+launch(options).then(async (browser) => {
     await start()
     let page = await browser.newPage()
 
