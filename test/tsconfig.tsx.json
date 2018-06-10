@@ -1,0 +1,15 @@
+{
+  "include": [
+    "*.d.ts",
+    "*.tsx"
+  ],
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+  }
+}

@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Browser testing with tape</title>
+    <!-- avoid 404 for favicon.ico -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+    <div id="root"></div>
+    <script src="node_modules/react/umd/react.production.min.js"></script>
+    <script src="node_modules/react-dom/umd/react-dom.production.min.js"></script>
+    <script src="tape.js"></script>
+    <script>
+    exports = {}
+    var nameMap = {
+        'react': 'React'
+    }
+    function require(name) {
+        return nameMap[name] ? window[nameMap[name]] : window[name]
+    }
+    </script>
+    <script src="index.js"></script>
+    <script type=module src="./client-tests.js"></script>
+</body>
+</html>

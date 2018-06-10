@@ -1,0 +1,37 @@
+{
+  "name": "simple-browser-testing",
+  "version": "1.0.0",
+  "description": "plain browser testing with puppeteer and tape",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-client && npm run build-server && npm run build-tape",
+    "build-client": "tsc -p tsconfig.tsx.json",
+    "build-server": "tsc",
+    "build-tape": "browserify node_modules/tape/index.js -s tape -o tape.js",
+    "test": "npm run build-client && node test.js | tap-dot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arve0/simple-browser-testing.git"
+  },
+  "author": "Arve Seljebu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arve0/simple-browser-testing/issues"
+  },
+  "homepage": "https://github.com/arve0/simple-browser-testing#readme",
+  "devDependencies": {
+    "@types/node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@types/tape": "*",
+    "browserify": "*",
+    "puppeteer": "*",
+    "react": "*",
+    "react-dom": "*",
+    "tap-dot": "arve0/tap-dot#with-stack-output",
+    "tape": "*",
+    "typescript": "*"
+  },
+  "dependencies": {}
+}

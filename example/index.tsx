@@ -1,15 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, Store, AnyAction } from 'redux'
 import { connect, Provider } from 'react-redux'
 import AnimateOnChange from '../index.js'
-import './style.css'
 
 const initialState = {
   diff: 0,
   score: 0
 }
-const reducer = (state = initialState, action) => {
+
+interface Action {
+  type: string,
+  diff: number
+}
+
+const reducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case 'INCREMENT_SCORE':
       return Object.assign({}, state, {
@@ -20,16 +25,20 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-const store = createStore(reducer)
+const store: Store<typeof initialState, Action> = createStore(reducer)
 setInterval(() => {
   store.dispatch({
     type: 'INCREMENT_SCORE',
     diff: 10
   })
 }, 2000)
-window.store = store
 
-const AppComponent = ({diff, score}) =>
+interface Props {
+  diff: number,
+  score: number,
+}
+
+const AppComponent = ({ diff, score }: Props) =>
   <div className='App'>
     <AnimateOnChange
       baseClassName='Score'
@@ -41,5 +50,6 @@ const AppComponent = ({diff, score}) =>
 
 const App = connect(s => s)(AppComponent)
 
+// @ts-ignore
 ReactDOM.render(<Provider store={store}><App/></Provider>,
                 document.getElementById('root'))
