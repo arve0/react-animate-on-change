@@ -23,6 +23,11 @@ interface State {
   clearAnimationClass: boolean
 }
 
+interface AnimateOnChange {
+  elm: HTMLElement,
+  setElementRef: (ref: HTMLElement) => void
+}
+
 /**
  * # AnimateOnChange component.
  * Adds `animationClassName` when `animate` is true, then removes
@@ -33,27 +38,29 @@ interface State {
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
-class AnimateOnChange extends Component<Props, State> {
+class AnimateOnChange extends Component<Props, State> implements AnimateOnChange {
   constructor (props: Props) {
     super(props)
     this.state = { animating: false, clearAnimationClass: false }
     this.animationStart = this.animationStart.bind(this)
     this.animationEnd = this.animationEnd.bind(this)
+
+    this.setElementRef = (ref) => {
+      this.elm = ref
+    }
   }
 
   componentDidMount () {
-    const elm = this.refs.root
-    this.addEventListener('start', elm, this.animationStart)
-    this.addEventListener('end', elm, this.animationEnd)
+    this.addEventListener('start', this.elm, this.animationStart)
+    this.addEventListener('end', this.elm, this.animationEnd)
   }
 
   componentWillUnmount () {
-    const elm = this.refs.root
-    this.removeEventListeners('start', elm, this.animationStart)
-    this.removeEventListeners('end', elm, this.animationEnd)
+    this.removeEventListeners('start', this.elm, this.animationStart)
+    this.removeEventListeners('end', this.elm, this.animationEnd)
   }
 
-  addEventListener (type: string, elm: ReactInstance, eventHandler: (e: Event) => void) {
+  addEventListener (type: string, elm: HTMLElement, eventHandler: (e: Event) => void) {
     // until an event has been triggered bind them all
     events[type].map(event => {
       // console.log(`adding ${event}`)
@@ -62,7 +69,7 @@ class AnimateOnChange extends Component<Props, State> {
     })
   }
 
-  removeEventListeners (type: string, elm: ReactInstance, eventHandler: (e: Event) => void) {
+  removeEventListeners (type: string, elm: HTMLElement, eventHandler: (e: Event) => void) {
     events[type].map(event => {
       // console.log(`removing ${event}`)
       // @ts-ignore
@@ -79,7 +86,7 @@ class AnimateOnChange extends Component<Props, State> {
   animationStart (e: Event) {
     if (events['start'].length > 1) {
       this.updateEvents('start', e.type)
-      this.removeEventListeners('startRemoved', this.refs.root, this.animationStart)
+      this.removeEventListeners('startRemoved', this.elm, this.animationStart)
     }
     this.setState({ animating: true, clearAnimationClass: false })
   }
@@ -87,7 +94,7 @@ class AnimateOnChange extends Component<Props, State> {
   animationEnd (e: Event) {
     if (events['end'].length > 1) {
       this.updateEvents('end', e.type)
-      this.removeEventListeners('endRemoved', this.refs.root, this.animationStart)
+      this.removeEventListeners('endRemoved', this.elm, this.animationStart)
     }
     // send separate, animation state change will not render
     this.setState({ clearAnimationClass: true })  // renders
@@ -109,7 +116,7 @@ class AnimateOnChange extends Component<Props, State> {
       className += ` ${this.props.animationClassName}`
     }
 
-    return <span ref='root' className={className}>
+    return <span ref={this.setElementRef} className={className}>
       {this.props.children}
     </span>
   }

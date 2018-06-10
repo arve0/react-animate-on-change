@@ -1,4 +1,4 @@
-import { Component, ReactInstance } from 'react';
+import { Component } from 'react';
 interface Props {
     children: {};
     animate: boolean;
@@ -8,6 +8,10 @@ interface Props {
 interface State {
     animating: boolean;
     clearAnimationClass: boolean;
+}
+interface AnimateOnChange {
+    elm: HTMLElement;
+    setElementRef: (ref: HTMLElement) => void;
 }
 /**
  * # AnimateOnChange component.
@@ -19,12 +23,12 @@ interface State {
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
-declare class AnimateOnChange extends Component<Props, State> {
+declare class AnimateOnChange extends Component<Props, State> implements AnimateOnChange {
     constructor(props: Props);
     componentDidMount(): void;
     componentWillUnmount(): void;
-    addEventListener(type: string, elm: ReactInstance, eventHandler: (e: Event) => void): void;
-    removeEventListeners(type: string, elm: ReactInstance, eventHandler: (e: Event) => void): void;
+    addEventListener(type: string, elm: HTMLElement, eventHandler: (e: Event) => void): void;
+    removeEventListeners(type: string, elm: HTMLElement, eventHandler: (e: Event) => void): void;
     updateEvents(type: string, newEvent: string): void;
     animationStart(e: Event): void;
     animationEnd(e: Event): void;

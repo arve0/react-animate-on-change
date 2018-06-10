@@ -3,7 +3,7 @@ const { launch } = require('puppeteer')
 
 const options = process.env.TRAVIS
     ? { args: ['--no-sandbox'] }
-    : {}
+    : { headless: false }
 
 launch(options).then(async (browser) => {
     await start()

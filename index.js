@@ -30,16 +30,17 @@ class AnimateOnChange extends react_1.Component {
         this.state = { animating: false, clearAnimationClass: false };
         this.animationStart = this.animationStart.bind(this);
         this.animationEnd = this.animationEnd.bind(this);
+        this.setElementRef = (ref) => {
+            this.elm = ref;
+        };
     }
     componentDidMount() {
-        const elm = this.refs.root;
-        this.addEventListener('start', elm, this.animationStart);
-        this.addEventListener('end', elm, this.animationEnd);
+        this.addEventListener('start', this.elm, this.animationStart);
+        this.addEventListener('end', this.elm, this.animationEnd);
     }
     componentWillUnmount() {
-        const elm = this.refs.root;
-        this.removeEventListeners('start', elm, this.animationStart);
-        this.removeEventListeners('end', elm, this.animationEnd);
+        this.removeEventListeners('start', this.elm, this.animationStart);
+        this.removeEventListeners('end', this.elm, this.animationEnd);
     }
     addEventListener(type, elm, eventHandler) {
         // until an event has been triggered bind them all
@@ -64,14 +65,14 @@ class AnimateOnChange extends react_1.Component {
     animationStart(e) {
         if (events['start'].length > 1) {
             this.updateEvents('start', e.type);
-            this.removeEventListeners('startRemoved', this.refs.root, this.animationStart);
+            this.removeEventListeners('startRemoved', this.elm, this.animationStart);
         }
         this.setState({ animating: true, clearAnimationClass: false });
     }
     animationEnd(e) {
         if (events['end'].length > 1) {
             this.updateEvents('end', e.type);
-            this.removeEventListeners('endRemoved', this.refs.root, this.animationStart);
+            this.removeEventListeners('endRemoved', this.elm, this.animationStart);
         }
         // send separate, animation state change will not render
         this.setState({ clearAnimationClass: true }); // renders
@@ -89,7 +90,7 @@ class AnimateOnChange extends react_1.Component {
         if (this.props.animate && !this.state.clearAnimationClass) {
             className += ` ${this.props.animationClassName}`;
         }
-        return react_1.default.createElement("span", { ref: 'root', className: className }, this.props.children);
+        return react_1.default.createElement("span", { ref: this.setElementRef, className: className }, this.props.children);
     }
 }
 exports.default = AnimateOnChange;
