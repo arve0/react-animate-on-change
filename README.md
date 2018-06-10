@@ -1,6 +1,6 @@
 # react-animate-on-change
 
-[![](https://saucelabs.com/browser-matrix/arve0.svg)](https://saucelabs.com/u/arve0)
+[![Build Status](https://travis-ci.org/arve0/react-animate-on-change.svg?branch=master)](https://travis-ci.org/arve0/react-animate-on-change)
 
 Animate your react components on props or state changes, in contrast to [entries added/removed from arrays](https://facebook.github.io/react/docs/animation.html).
 
@@ -13,7 +13,9 @@ npm install react-animate-on-change react
 
 ## Usage
 ```js
-const AnimateOnChange = require('react-animate-on-change')
+import AnimateOnChange from 'react-animate-on-change'
+// CommonJS:
+// const AnimateOnChange = require('react-animate-on-change').default
 
 // functional component
 const Score = (props) =>
@@ -57,4 +59,4 @@ npm start
 Add tests in [test.js](test.js) and hack away.
 
 ## Known issues
-- The browser must support CSS3 animations, doh.
+- The browser must support CSS3 animations.
