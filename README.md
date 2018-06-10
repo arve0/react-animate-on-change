@@ -13,7 +13,9 @@ npm install react-animate-on-change react
 
 ## Usage
 ```js
-const AnimateOnChange = require('react-animate-on-change')
+import AnimateOnChange from 'react-animate-on-change'
+// CommonJS:
+// const AnimateOnChange = require('react-animate-on-change').default
 
 // functional component
 const Score = (props) =>
