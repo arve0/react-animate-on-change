@@ -12,10 +12,11 @@ const events: Events = {
 }
 
 interface Props {
-  children: {},
+  children: any,
   animate: boolean,
   baseClassName: string,
-  animationClassName: string
+  animationClassName: string,
+  customTag?: string,
 }
 
 interface State {
@@ -116,9 +117,11 @@ class AnimateOnChange extends Component<Props, State> implements AnimateOnChange
       className += ` ${this.props.animationClassName}`
     }
 
-    return <span ref={this.setElementRef} className={className}>
+    let Tag = this.props.customTag || 'span';
+
+    return <Tag ref={this.setElementRef} className={className}>
       {this.props.children}
-    </span>
+    </Tag>
   }
 }
 

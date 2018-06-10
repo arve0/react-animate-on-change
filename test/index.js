@@ -90,7 +90,8 @@ class AnimateOnChange extends react_1.Component {
         if (this.props.animate && !this.state.clearAnimationClass) {
             className += ` ${this.props.animationClassName}`;
         }
-        return react_1.default.createElement("span", { ref: this.setElementRef, className: className }, this.props.children);
+        let Tag = this.props.customTag || 'span';
+        return react_1.default.createElement(Tag, { ref: this.setElementRef, className: className }, this.props.children);
     }
 }
 exports.default = AnimateOnChange;
