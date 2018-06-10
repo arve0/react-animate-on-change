@@ -1,7 +1,7 @@
 {
-  "files": [
-    "globals.d.ts",
-    "client-tests.tsx"
+  "include": [
+    "*.d.ts",
+    "*.tsx"
   ],
   "compilerOptions": {
     "target": "es2015",
@@ -10,6 +10,6 @@
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
   }
 }

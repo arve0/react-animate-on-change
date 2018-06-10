@@ -3,4 +3,6 @@ cache:
   directories:
     - node_modules
 node_js:
-- '8'
+  - '8'
+before_script:
+  - cd test && npm i
