@@ -52,6 +52,8 @@ Also, [see the example folder](example).
 
 `animate {bool}` : Whether component should animate.
 
+`customTag {string}` : HTML tag of the component.
+
 ## Develop
 ```sh
 npm start

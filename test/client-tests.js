@@ -23,8 +23,8 @@ style.innerHTML = `
   to {opacity: 0;}
 }`;
 document.head.appendChild(style);
-const Animated = ({ children = 'text' }) => {
-    return React.createElement(AnimateOnChange, { baseClassName: 'base', animationClassName: 'fade', animate: true }, children);
+const Animated = ({ children = 'text', tag = 'span' }) => {
+    return React.createElement(AnimateOnChange, { baseClassName: 'base', animationClassName: 'fade', animate: true, customTag: tag }, children);
 };
 class UpdatingProps extends React.Component {
     constructor(props) {
@@ -43,6 +43,8 @@ class UpdatingProps extends React.Component {
 tape('it should render to dom', t => {
     ReactDOM.render(React.createElement(Animated, null), root, () => {
         t.assert(root.children.length == 1, 'did not render to dom');
+        let tag = root.children[0].tagName;
+        t.assert(tag == 'SPAN', `custom tag 'div' not rendered, got ${tag}`);
         t.end();
     });
 });
@@ -73,4 +75,11 @@ tape('adds animation class on props change', t => {
         t.equal(animated[0].textContent, 'updated text');
         t.end();
     }, ANIMATION_TIME + 2 * ANIMATION_SETTLE + 0.5 * ANIMATION_TIME);
+});
+tape('define custom tag', t => {
+    ReactDOM.render(React.createElement(Animated, { tag: 'div' }), root, () => {
+        let tag = root.children[0].tagName;
+        t.assert(tag == 'DIV', `custom tag 'div' not rendered, got ${tag}`);
+        t.end();
+    });
 });

@@ -1,9 +1,10 @@
 import { Component } from 'react';
 interface Props {
-    children: {};
+    children: any;
     animate: boolean;
     baseClassName: string;
     animationClassName: string;
+    customTag?: string;
 }
 interface State {
     animating: boolean;
