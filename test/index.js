@@ -77,6 +77,9 @@ class AnimateOnChange extends react_1.Component {
         // send separate, animation state change will not render
         this.setState({ clearAnimationClass: true }); // renders
         this.setState({ animating: false, clearAnimationClass: false });
+        if (typeof this.props.onAnimationEnd === 'function') {
+            this.props.onAnimationEnd();
+        }
     }
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.animating !== nextState.animating) {
