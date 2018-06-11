@@ -1,12 +1,13 @@
 import { Component } from 'react';
-interface Props {
+export interface Props {
     children: any;
     animate: boolean;
     baseClassName: string;
     animationClassName: string;
     customTag?: string;
+    onAnimationEnd?: () => void;
 }
-interface State {
+export interface State {
     animating: boolean;
     clearAnimationClass: boolean;
 }

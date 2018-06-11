@@ -54,6 +54,8 @@ Also, [see the example folder](example).
 
 `customTag {string}` : HTML tag of the component.
 
+`onAnimationEnd {() => void)}` : Callback which is called when animation ends.
+
 ## Develop
 ```sh
 npm start

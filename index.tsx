@@ -11,15 +11,16 @@ const events: Events = {
   endRemoved: []
 }
 
-interface Props {
+export interface Props {
   children: any,
   animate: boolean,
   baseClassName: string,
   animationClassName: string,
   customTag?: string,
+  onAnimationEnd?: () => void,
 }
 
-interface State {
+export interface State {
   animating: boolean,
   clearAnimationClass: boolean
 }
@@ -100,6 +101,10 @@ class AnimateOnChange extends Component<Props, State> implements AnimateOnChange
     // send separate, animation state change will not render
     this.setState({ clearAnimationClass: true })  // renders
     this.setState({ animating: false, clearAnimationClass: false })
+
+    if (typeof this.props.onAnimationEnd === 'function') {
+      this.props.onAnimationEnd()
+    }
   }
 
   shouldComponentUpdate (nextProps: Props, nextState: State) {
