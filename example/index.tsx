@@ -17,9 +17,9 @@ interface Action {
 const reducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case 'INCREMENT_SCORE':
-      return Object.assign({}, state, {
+      return { ...state,
         diff: action.diff,
-        score: state.score + action.diff })
+        score: state.score + action.diff }
     default:
       return state
   }

@@ -57,10 +57,24 @@ Also, [see the example folder](example).
 `onAnimationEnd {() => void)}` : Callback which is called when animation ends.
 
 ## Develop
+Setup:
 ```sh
-npm start
+npm install
+cd test
+npm install
+cd ..
 ```
-Add tests in [test.js](test.js) and hack away.
+
+Add tests in [test/client-tests.js](client-tests.js), start tests with:
+```
+npm test
+```
+
+Build and view example:
+```
+npm run build-example
+open example/index.html
+```
 
 ## Known issues
 - The browser must support CSS3 animations.
