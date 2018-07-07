@@ -1,6 +1,6 @@
 {
   "name": "react-animate-on-change",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Animate your components on state change",
   "main": "index.js",
   "scripts": {
