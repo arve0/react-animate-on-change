@@ -43,7 +43,11 @@ const AppComponent = ({ diff, score }: Props) =>
     <AnimateOnChange
       baseClassName='Score'
       animationClassName='Score--bounce'
-      animate={diff !== 0}>
+      animate={diff !== 0}
+      otherProps= {{
+        id: "test-id"
+      }}
+    >
         Score: {score}
     </AnimateOnChange>
   </div>

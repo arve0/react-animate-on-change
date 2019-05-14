@@ -18,6 +18,7 @@ export interface Props {
   animationClassName: string,
   customTag?: string,
   onAnimationEnd?: () => void,
+  otherProps?: object,
 }
 
 export interface State {
@@ -116,16 +117,19 @@ class AnimateOnChange extends Component<Props, State> implements AnimateOnChange
   }
 
   render () {
-    let className = this.props.baseClassName
+    const { clearAnimationClass } = this.state;
+    const { baseClassName, animate, animationClassName, customTag, children, otherProps } = this.props;
 
-    if (this.props.animate && !this.state.clearAnimationClass) {
-      className += ` ${this.props.animationClassName}`
+    let className = baseClassName
+
+    if (animate && !clearAnimationClass) {
+      className += ` ${animationClassName}`
     }
 
-    let Tag = this.props.customTag || 'span';
+    let Tag = customTag || 'span';
 
-    return <Tag ref={this.setElementRef} className={className}>
-      {this.props.children}
+    return <Tag ref={this.setElementRef} className={className} {...otherProps}>
+      {children}
     </Tag>
   }
 }
