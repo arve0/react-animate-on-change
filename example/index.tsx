@@ -38,15 +38,18 @@ interface Props {
   score: number,
 }
 
+function handleClick(): void {
+  console.log('click!');
+}
+
 const AppComponent = ({ diff, score }: Props) =>
   <div className='App'>
     <AnimateOnChange
       baseClassName='Score'
       animationClassName='Score--bounce'
       animate={diff !== 0}
-      otherProps= {{
-        id: "test-id"
-      }}
+      id="example-id"
+      onClick={handleClick}
     >
         Score: {score}
     </AnimateOnChange>

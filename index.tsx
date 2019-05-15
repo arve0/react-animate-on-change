@@ -18,7 +18,6 @@ export interface Props {
   animationClassName: string,
   customTag?: string,
   onAnimationEnd?: () => void,
-  otherProps?: object,
 }
 
 export interface State {
@@ -41,7 +40,7 @@ interface AnimateOnChange {
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
-class AnimateOnChange extends Component<Props, State> implements AnimateOnChange {
+class AnimateOnChange extends Component<Props & any, State> implements AnimateOnChange {
   constructor (props: Props) {
     super(props)
     this.state = { animating: false, clearAnimationClass: false }
@@ -118,7 +117,14 @@ class AnimateOnChange extends Component<Props, State> implements AnimateOnChange
 
   render () {
     const { clearAnimationClass } = this.state;
-    const { baseClassName, animate, animationClassName, customTag, children, otherProps } = this.props;
+    const {
+      baseClassName,
+      animate,
+      animationClassName,
+      customTag,
+      children,
+      ...otherProps
+    } = this.props;
 
     let className = baseClassName
 
