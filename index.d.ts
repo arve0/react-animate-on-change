@@ -25,7 +25,7 @@ interface AnimateOnChange {
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
-declare class AnimateOnChange extends Component<Props, State> implements AnimateOnChange {
+declare class AnimateOnChange extends Component<Props & any, State> implements AnimateOnChange {
     constructor(props: Props);
     componentDidMount(): void;
     componentWillUnmount(): void;
