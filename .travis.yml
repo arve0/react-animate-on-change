@@ -4,6 +4,4 @@ cache:
     - node_modules
     - test/node_modules
 node_js:
-  - '8'
-before_script:
-  - cd test && npm i
+  - '10'
