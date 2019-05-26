@@ -1,8 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const http_1 = require("http");
-const fs_1 = require("fs");
-const path_1 = require("path");
+const http = require("http");
+const fs = require("fs");
+const { normalize, join } = require("path");
+
+let rootPath;
 const mimeTypes = {
     'html': 'text/html',
     'jpeg': 'image/jpeg',
@@ -12,35 +12,40 @@ const mimeTypes = {
     'css': 'text/css',
     'default': 'text/plain',
 };
-const webserver = http_1.createServer(sendFile);
+
+const webserver = http.createServer(sendFile);
+
 function sendFile(request, response) {
     let path = request.url || '';
-    let safePath = path_1.normalize(path).replace('^(\.\.[\/\\])+', '');
-    if (safePath === '' || safePath === '/') {
+    let safePath = normalize(path).replace('^(\.\.[\/\\])+', '');
+    if (safePath === '' || safePath === '/' || safePath === '\\') {
         safePath = 'index.html';
     }
-    let filename = path_1.join(__dirname, safePath);
-    if (!fs_1.existsSync(filename)) {
-        console.log('404 - ' + request.method + ': ' + request.url);
+    let filename = join(rootPath, safePath);
+    if (!fs.existsSync(filename)) {
+        console.log('Server: 404 - ' + request.method + ': ' + request.url);
         response.statusCode = 404;
         response.end('File not found.');
     }
     else {
-        console.log('200 - ' + request.method + ': ' + request.url);
+        // console.log('Server: 200 - ' + request.method + ': ' + request.url);
         let headers = {
-            'Content-Type': mimeTypes[filename.split('.').pop() || 'default']
+            // @ts-ignore
+            'Content-Type': mimeTypes[filename.split('.').pop()] || mimeTypes['default']
         };
         response.writeHead(200, headers);
-        response.end(fs_1.readFileSync(filename));
+        response.end(fs.readFileSync(filename));
     }
 }
-function start(port = 8888) {
+
+function start(path = __dirname, port = 8888) {
+    rootPath = path
     return new Promise((resolve, reject) => {
         webserver.listen(port, (err) => {
             if (err) {
                 return reject(err);
             }
-            console.log(`Listening on port ${port}`);
+            console.log(`Server: Listening on port ${port}`);
             resolve();
         });
     });
@@ -50,3 +55,4 @@ function shutdown() {
     webserver.close();
 }
 exports.shutdown = shutdown;
+//# sourceMappingURL=server.js.map

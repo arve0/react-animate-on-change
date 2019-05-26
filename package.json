@@ -4,11 +4,11 @@
   "description": "Animate your components on state change",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && cp index.js index.d.ts test/",
+    "build": "tsc",
     "build-example": "cd example && webpack",
     "postversion": "npm run build && npm run build-example && git add . && git commit --amend --no-edit",
     "postpublish": "git push && git push --tags",
-    "test": "npm run build && cd test && npm test"
+    "test": "npm run build && mocha"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
     "debug": "^3.1.0",
+    "mocha": "^6.1.4",
+    "puppeteer-firefox": "^0.5.0",
     "react": ">15.0.0",
     "react-dom": ">15.0.0",
     "react-redux": "^5.0.7",
