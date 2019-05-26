@@ -40,7 +40,7 @@ interface AnimateOnChange {
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
-class AnimateOnChange extends Component<Props, State> implements AnimateOnChange {
+class AnimateOnChange extends Component<Props & any, State> implements AnimateOnChange {
   constructor (props: Props) {
     super(props)
     this.state = { animating: false, clearAnimationClass: false }
@@ -116,16 +116,27 @@ class AnimateOnChange extends Component<Props, State> implements AnimateOnChange
   }
 
   render () {
-    let className = this.props.baseClassName
+    const { clearAnimationClass } = this.state;
+    const {
+      baseClassName,
+      animate,
+      animationClassName,
+      customTag,
+      children,
+      onAnimationEnd, // unpack, such that otherProps does not contain it
+      ...otherProps
+    } = this.props;
 
-    if (this.props.animate && !this.state.clearAnimationClass) {
-      className += ` ${this.props.animationClassName}`
+    let className = baseClassName
+
+    if (animate && !clearAnimationClass) {
+      className += ` ${animationClassName}`
     }
 
-    let Tag = this.props.customTag || 'span';
+    let Tag = customTag || 'span';
 
-    return <Tag ref={this.setElementRef} className={className}>
-      {this.props.children}
+    return <Tag ref={this.setElementRef} className={className} {...otherProps}>
+      {children}
     </Tag>
   }
 }
