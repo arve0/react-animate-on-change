@@ -123,6 +123,7 @@ class AnimateOnChange extends Component<Props & any, State> implements AnimateOn
       animationClassName,
       customTag,
       children,
+      onAnimationEnd, // unpack, such that otherProps does not contain it
       ...otherProps
     } = this.props;
 
